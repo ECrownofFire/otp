@@ -1875,6 +1875,8 @@ remote_dirty_match_object(Tab, Pat) ->
 	    remote_dirty_match_object(Tab, Pat, PosList)
     end.
 
+remote_dirty_match_object(Tab, Pat, [{_,_,_}|Tail]) ->
+    remote_dirty_match_object(Tab, Pat, Tail);
 remote_dirty_match_object(Tab, Pat, [Pos | Tail]) when Pos =< tuple_size(Pat) ->
     IxKey = element(Pos, Pat),
     case has_var(IxKey) of
